@@ -45,6 +45,12 @@ class GroupsController < ApplicationController
             redirect_to groups_path, notice: 'グループを削除しました。'
         end
     end
+    
+    def join
+        @group = Group.find(params[:id])
+        @group.users << current_user
+        @group.save
+    end
 
     private
         def set_group
